@@ -40,12 +40,21 @@ Feature: Profanity Check
     When I check the text
     Then the response should indicate profanity is found
 
+
   Scenario: Check for profanity with custom fill text (JSON)
     Given I have the text "The word Bastard is an example of profanity."
     And I have set the fill text to "[REDACTED]"
     And I want to use the "json" endpoint
     When I check the text
     Then the response should indicate profanity is found
+
+    
+  Scenario: Check for error with long fill text
+    Given I have the text "this is some test input"
+    And I have set the fill text to "this is curiously long replacement text"
+    And I want to use the "json" endpoint
+    When I check the text
+    Then the response should indicate an error for fill text
 
   Scenario: Check for profanity with custom fill character (JSON)
     Given I have the text "The word Bastard is an example of profanity."
@@ -100,3 +109,4 @@ Feature: Profanity Check
     And I want to use the "containsprofanity" endpoint
     When I check the text
     Then the response should indicate profanity is found
+

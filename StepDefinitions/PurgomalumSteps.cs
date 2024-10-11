@@ -154,5 +154,16 @@ namespace PurgomalumAPIAutomation.Steps
                 throw new ArgumentException($"Unsupported endpoint: {_selectedEndpoint}");
             }
         }
+
+        [Then(@"the response should indicate an error for fill text")]
+        public void ThenTheResponseShouldIndicateAnErrorForFillText()
+        {
+            Assert.NotNull(_jsonResponse);
+            Assert.Equal("User Replacement Text Exceeds Limit of 20 Characters.", _jsonResponse.Error);
+        }
+
+
     }
+
+
 }
